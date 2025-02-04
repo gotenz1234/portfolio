@@ -520,9 +520,10 @@
                 function toggleMenu() {
             var navLinks = document.getElementById("navLinks");
             navLinks.classList.toggle("active");
-        }
+       					 }
 		
 			let currentIndex = 0;
+	    		const totalSlides = document.querySelectorAll('.carousel-item').length;
 			const images = [
 				{ src: '/images/AI_Building.png', desc: 'AI Building' },
 				{ src: '/images/AI_Eyes.png', desc: 'AI Eyes' },
@@ -585,6 +586,11 @@
 					closeModal();
 				}
 			};
+			    function moveSlide(direction) {
+		            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+		            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
+		            document.getElementById('current-slide').textContent = currentIndex + 1;
+		        }
 
         window.addEventListener('scroll', function() {
             var header = document.getElementById('header');

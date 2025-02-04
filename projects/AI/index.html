@@ -304,6 +304,7 @@
 			width: 100%;
 			max-width: 90%; /* Match image width */
 			border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+			display: none; /* AI Images don't need description */
 		}
 
 		.close {
@@ -436,7 +437,7 @@
 
 		<!-- Gallery Section -->
 			        <div class="project-gallery">
-            <img src="/images/AI_Building.png" alt="An interesting building" onclick="openModal(this.src, this.alt)">
+            <img src="/images/AI_Building.png" onclick="openModal(this.src, this.alt)">
             <img src="/images/AI_Eyes.png" alt="Close up of eye" onclick="openModal(this.src, this.alt)">
             <img src="/images/AI_Garden.png" alt="Zen Garden" onclick="openModal(this.src, this.alt)">
 	    <img src="/images/Shore.png" alt="Girl by the sea" onclick="openModal(this.src, this.alt)">
@@ -470,12 +471,15 @@
 			function openModal(src, desc) {
 				const modal = document.getElementById('myModal');
 				const modalImg = document.getElementById('modalImg');
-				const modalDesc = document.getElementById('modalDesc');
+				/* Removing description for this page */
+				/*  const modalDesc = document.getElementById('modalDesc'); */
 
 				currentIndex = images.findIndex(img => img.src === src);
 				modal.style.display = 'flex';
 				modalImg.src = src;
-				modalDesc.textContent = desc;
+
+				/* Removing description for this page */
+				/* modalDesc.textContent = desc; */
 			}
 
 			function closeModal() {

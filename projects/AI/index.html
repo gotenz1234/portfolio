@@ -526,7 +526,15 @@
             var navLinks = document.getElementById("navLinks");
             navLinks.classList.toggle("active");
        					 }
-		
+				// Set total slides dynamically when page loads
+		document.addEventListener("DOMContentLoaded", () => {
+		    const totalSlidesElement = document.getElementById("total-slides");
+		    const totalSlides = document.querySelectorAll(".carousel-item").length;
+		    
+		    totalSlidesElement.textContent = totalSlides;
+		    document.getElementById("current-slide").textContent = currentIndex + 1;
+		});
+	    
 			let currentIndex = 0;
 	    		const totalSlides = document.querySelectorAll('.carousel-item').length;
 			const images = [

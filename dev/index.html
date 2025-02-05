@@ -1,3 +1,4 @@
+-- DEV
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -368,13 +369,13 @@
 		
             <div class="gallery-item">
 			<div onclick="openModal('/images/Vendor.JPG')">
-                    		<img src="/images/Vendor.JPG" alt="Photography sample 2">
+                    		<img src="/images/Vendor.JPG" alt="A vendor taking a short break from cooking">
 			</div>
             </div>
 			
             <div class="gallery-item">
 			<div onclick="openModal('/images/KS.JPG')">
-				<img src="/images/KS.JPG" alt="Photography sample 3">
+				<img src="/images/KS.JPG" alt="A picture of a man sitting on the floor">
 			</div>
             </div>
 			
@@ -417,7 +418,6 @@
 			
         </div>
 		
-		 <!-- Carousel Section -->
 		 <!-- Carousel Section -->
     <div class="carousel-container">
         <div class="carousel">
@@ -546,6 +546,7 @@
             const modalImg = document.getElementById('modal-img');
             modal.style.display = 'flex'; // Show the modal
             modalImg.src = imageSrc; // Set the image source
+			console.log("Modal image source set to:", modalImg.src); // Check if the source updates
         }
 
         // Close the modal

@@ -541,6 +541,7 @@
 		
 		// Open the modal and set the image source
         function openModal(imageSrc) {
+	    console.log("openModal function triggered with image source:", imageSrc);
             const modal = document.getElementById('lightbox-modal');
             const modalImg = document.getElementById('modal-img');
             modal.style.display = 'flex'; // Show the modal

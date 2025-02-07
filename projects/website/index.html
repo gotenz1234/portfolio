@@ -399,8 +399,9 @@
             <div class="project-details">
                 <h2>About the Project</h2>
                 <p>
-                    The client sought a comprehensive brand overhaul to better align with a younger demographic. This included a complete redesign of their website, transitioning from a traditional "Balinese" theme to a modern, minimalist aesthetic. 
-		The previous design was perceived as dark and uninviting, and the goal was to create an engaging, user-friendly experience that would attract a younger, more vibrant audience. Through strategic design choices, the new look was crafted to be both visually appealing and welcoming, enhancing the overall customer experience and supporting the client’s evolving business goals.
+                    The client sought a comprehensive brand overhaul to better align with a younger demographic. This included a complete redesign of their website, transitioning from a traditional "Balinese" theme to a modern, minimalist aesthetic. <br> 
+		The previous design was perceived as dark and uninviting, and the goal was to create an engaging, user-friendly experience that would attract a younger, more vibrant audience. <br>
+		Through strategic design choices, the new look was crafted to be both visually appealing and welcoming, enhancing the overall customer experience and supporting the client’s evolving business goals.
                 </p>
 
                 <h2>Key Features</h2>
@@ -450,28 +451,34 @@
 			<div class="gallery-section">
 				<h3>Before</h3>
 				<div class="gallery-images">
+					<div class="gallery-item" onclick="openModal('/images/OldWebsite_Color.png', 'Old Home Page color - Dark Gloomy, uninviting')">
+						<img src="/images/OldWebsite_Color.png" alt="Before - Homepage color palette">
+					</div>
 					<div class="gallery-item" onclick="openModal('/images/OldWebsite_HomePage.png', 'Old Home Page - Balinese theme, Tacky and outdated')">
-						<img src="/images/OldWebsite_HomePage.png" alt="Before Image 1">
+						<img src="/images/OldWebsite_HomePage.png" alt="Before - Homepage layout">
 					</div>
 					<div class="gallery-item" onclick="openModal('/images/OldWebsite_ContactUs.png', 'Old Contact Page - Redundant Captcha and inconvenient')">
-						<img src="/images/OldWebsite_ContactUs.png" alt="Before Image 2">
+						<img src="/images/OldWebsite_ContactUs.png" alt="Before - Contact Us">
 					</div>
 					<div class="gallery-item" onclick="openModal('/images/OldWebsite_Promotions.png', 'Old Promotion Image - Wordy and messy')">
-						<img src="/images/OldWebsite_Promotions.png" alt="Before Image 3">
+						<img src="/images/OldWebsite_Promotions.png" alt="Before - Promotions ">
 					</div>
 				</div>
 			</div>
 			<div class="gallery-section">
 				<h3>After</h3>
 				<div class="gallery-images">
+					<div class="gallery-item" onclick="openModal('/images/NewWebsite_Color.png', 'New Home Page color - Bright, Clean more appealing to younger audience')">
+						<img src="/images/NewWebsite_Color.png" alt="After - Homepage color palette">
+					</div>
 					<div class="gallery-item" onclick="openModal('/images/NewWebsite_HomePage.png', 'New Home Page - Clean and simple aesthetic')">
-						<img src="/images/NewWebsite_HomePage.png" alt="After Image 1">
+						<img src="/images/NewWebsite_HomePage.png" alt="After - Homepage layout">
 					</div>
 					<div class="gallery-item" onclick="openModal('/images/NewWebsite_ContactUs.png', 'New Contact Page - Removed captcha and added Whatsapp hyperlink')">
-						<img src="/images/NewWebsite_ContactUs.png" alt="After Image 2">
+						<img src="/images/NewWebsite_ContactUs.png" alt="After - Contact Us">
 					</div>
 					<div class="gallery-item" onclick="openModal('/images/NewWebsite_Promotions.png', 'New Promotion Image - Straight to the point')">
-						<img src="/images/NewWebsite_Promotions.png" alt="After Image 3">
+						<img src="/images/NewWebsite_Promotions.png" alt="After - Promotions">
 					</div>
 				</div>
 			</div>
@@ -487,9 +494,11 @@
 		
 			let currentIndex = 0;
 			const images = [
+				{ src: 'images/OldWebsite_Color.png', desc: 'Old Color Scheme' },
 				{ src: 'images/OldWebsite_HomePage.png', desc: 'Old Home Page' },
 				{ src: 'images/OldWebsite_ContactUs.png', desc: 'Old Website Contact Page' },
 				{ src: 'images/OldWebsite_Promotions.png', desc: 'Old Website Promotions' },
+				{ src: 'images/NewWebsite_Color.png', desc: 'New Color Scheme' },
 				{ src: 'images/NewWebsite_HomePage.png', desc: 'New Website Home Page' },
 				{ src: 'images/NewWebsite_ContactUs.png', desc: 'New Website Contact Page' },
 				{ src: 'images/NewWebsite_Promotions.png', desc: 'New Website Promotions' },

@@ -551,8 +551,10 @@
 				const modalImg = document.getElementById('modalImg');
 				/* Removing description for this page */
 				/*  const modalDesc = document.getElementById('modalDesc'); */
+				
 
 				currentIndex = images.findIndex(img => img.src === src);
+				console.log("Opening Modal at index", currentIndex); /* Debug */
 				modal.style.display = 'flex';
 				modalImg.src = src;
 
@@ -580,6 +582,7 @@
 				} else {
 					currentIndex = 0;
 				}
+				console.log("Updating Modal next image");
 				updateModal();
 			}
 

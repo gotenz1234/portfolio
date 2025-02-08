@@ -546,6 +546,11 @@
 				{ src: '/images/SeasideTown.png', desc: 'AI seaside town' },
 			];
 
+
+
+			function normalizePath(path) {
+			    return path.replace(/^\/+/, ''); // Removes one or more leading slashes
+			}
 			function openModal(src, desc) {
 				    const normalizedSrc = normalizePath(src); // Normalize the src passed to openModal
     					console.log("Normalized source:", normalizedSrc); // Debug

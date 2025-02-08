@@ -548,20 +548,15 @@
 
 
 
-			function normalizePath(path) {
-			    return path.replace(/^\/+/, ''); // Removes one or more leading slashes
-			}
+
 			function openModal(src, desc) {
-				    const normalizedSrc = normalizePath(src); // Normalize the src passed to openModal
-    					console.log("Normalized source:", normalizedSrc); // Debug
 				const modal = document.getElementById('myModal');
 				const modalImg = document.getElementById('modalImg');
 				/* Removing description for this page */
 				/*  const modalDesc = document.getElementById('modalDesc'); */
 
-				// Testing
-    				currentIndex = images.findIndex(img => normalizePath(img.src) === normalizedSrc);
-				/* currentIndex = images.findIndex(img => img.src === src); */
+				console.log("Current Index Number", currentIndex);
+				currentIndex = images.findIndex(img => img.src === src); 
 				console.log("Opening Modal at index", currentIndex); /* Debug */
 				modal.style.display = 'flex';
 				modalImg.src = src;

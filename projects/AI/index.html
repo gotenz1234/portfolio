@@ -585,7 +585,7 @@
 				} else {
 					currentIndex = 0;
 				}
-				console.log("Updating Modal next image");
+				console.log("Updating Modal next image", currentIndex);
 				updateModal();
 			}
 
@@ -603,14 +603,13 @@
 					closeModal();
 				}
 			};
-	    // Removing As a Test
-	    	/*--
+
+
 			    function moveSlide(direction) {
 		            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
 		            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
 		            document.getElementById('current-slide').textContent = currentIndex + 1;
 		        }
-		*/
 	    
         window.addEventListener('scroll', function() {
             var header = document.getElementById('header');

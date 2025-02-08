@@ -552,10 +552,7 @@
 				/* Removing description for this page */
 				/*  const modalDesc = document.getElementById('modalDesc'); */
 				
-				    const clickedIndex = images.findIndex(img => img.src === src);
-				    if (clickedIndex !== -1) {
-				        currentIndex = clickedIndex; // Set currentIndex correctly
-				    }
+
 				currentIndex = images.findIndex(img => img.src === src);
 				console.log("Opening Modal at index", currentIndex); /* Debug */
 				modal.style.display = 'flex';

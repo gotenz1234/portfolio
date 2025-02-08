@@ -557,7 +557,9 @@
 				/*  const modalDesc = document.getElementById('modalDesc'); */
 
 				console.log("Current Index Number", currentIndex);
-				currentIndex = images.findIndex(img => img.src === src); 
+				/* currentIndex = images.findIndex(img => img.src === src); */ 
+				currentIndex = images.findIndex(img => img.src.endsWith(src.split('/').pop()));
+
 				console.log("Opening Modal at index", currentIndex); /* Debug */
 				modal.style.display = 'flex';
 				modalImg.src = src;

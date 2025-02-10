@@ -231,6 +231,23 @@
         .gallery-item:hover {
             transform: scale(1.05);
         }
+
+        .gallery-description {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .gallery-description h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .gallery-description p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -259,6 +276,15 @@
         <a href="/projects" class="back-button">
             <i class="fas fa-arrow-left"></i> Back to Projects
         </a>
+
+                <!-- Description Section -->
+        <div class="gallery-description">
+            <h2>My Photography Collection</h2>
+            <p>
+                This gallery showcases a selection of my personal photography projects. Each image captures a unique moment, reflecting my passion for storytelling through visuals. <br>
+                From landscapes to portraits, these photos represent my journey as a creator and marketer.
+            </p>
+        </div>
 
         <div class="project-gallery">
             <div class="gallery-item" onclick="openModal('/images/image1.jpg', 'Description for Image 1')">

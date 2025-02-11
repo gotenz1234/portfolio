@@ -249,15 +249,16 @@
             margin: 0 auto;
         }
         .video-container {
-    width: 100vw;
-    height: 100vh; /* Optional: Set to full height if needed */
-    overflow: hidden;
+    width: 900px;
+    max-width: 100%; /* Ensures responsiveness */
+    margin: 0 auto; /* Centers the container */
+    overflow: hidden; /* Hides any overflow */
     }
 
     .video-container video {
-        width: 30%;
-        height: auto; /* Ensures proper scaling */
-        object-fit: cover; /* Covers the container without distortion */
+    width: 100%;
+    height: auto;  
+    object-fit: cover; /* Covers the container without distortion */
     }
     </style>
 </head>

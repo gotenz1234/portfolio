@@ -248,6 +248,17 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        .video-container {
+    width: 100vw;
+    height: 100vh; /* Optional: Set to full height if needed */
+    overflow: hidden;
+    }
+
+    .video-container video {
+        width: 100%;
+        height: auto; /* Ensures proper scaling */
+        object-fit: cover; /* Covers the container without distortion */
+    }
     </style>
 </head>
 <body>
@@ -284,6 +295,13 @@
                 This gallery showcases a selection of my personal photography projects. Each image captures a unique moment, reflecting my passion for storytelling through visuals. <br>
                 From landscapes to portraits, these photos represent my journey as a creator and marketer.
             </p>
+        </div>
+
+            <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="Timelapse_150speed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
 
         <div class="project-gallery">

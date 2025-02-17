@@ -432,6 +432,40 @@
 			  margin-right: 0;
 			  font-weight: bold;
 			}
+	    /* testing */
+
+	    /* FULL-WIDTH HEADING CONTAINER */
+	.fullwidth-heading {
+	  /* match the same width and centering if desired */
+	  max-width: 1200px;
+	  margin: 40px auto;   /* some spacing from the top section */
+	  padding: 30px;
+	  background: #fff;    /* same card style as above */
+	  border-radius: 15px;
+	  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+	}
+	
+	.fullwidth-heading h4 {
+	  margin: 0;
+	  font-size: 2rem;
+	  font-weight: bold;
+	}
+
+	    
+	/* FULL-WIDTH TEXT CONTAINER (transparent) */
+	.fullwidth-text {
+	  /* again match the same horizontal width, but no background */
+	  max-width: 1200px;
+	  margin: 0 auto;
+	  padding: 30px 0;  /* top/bottom spacing only */
+	  background: transparent;  /* invisible container */
+	  /* no border, no shadow */
+	}
+	
+	.fullwidth-text p {
+	  margin: 0;
+	  line-height: 1.6;
+	}
     </style>
 </head>
 <body>
@@ -540,7 +574,7 @@
             <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
             <div class="carousel-counter"><span id="current-slide">1</span> / <span id="total-slides"></span></div>
         </div>
-
+			<!-- Original
 	    <div class="project-content">
 		    <h4>The modern sorcery</h4>
 		<div class="project-headers">
@@ -552,6 +586,27 @@
 		    </div>
 		</div>
 	    </div>
+	      -->
+	    		<!-- Original  -->
+
+	    		<!-- New Testing  -->
+	    
+		<!-- Heading container (full width, same style as top if desired) -->
+		<div class="fullwidth-heading">
+		  <h4>The modern sorcery</h4>
+		</div>
+		
+		<!-- Text container (full width, transparent) -->
+		<div class="fullwidth-text">
+		  <p>
+		    Originally captured at Sensoji Temple, the photograph has been reimagined
+		    through the application of img2img technology, resulting in a strikingly
+		    eerie composition. <br><br>
+		    The characters within the scene now appear to gaze directly at the viewer,
+		    intensifying the sense of immersion and intrigue.
+		  </p>
+		</div>
+	    
 	    <div class="project-gallery">
 		    <div class="gallery-section">
 			    <h5>Before</h5>

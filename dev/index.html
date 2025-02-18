@@ -567,7 +567,7 @@
         </div>
 
 		<!-- Mobile Image Carousel -->
-        <div class="carousel-container" id="carousel-1">
+        <div class="carousel-container">
             <div class="carousel">
                 <div class="carousel-item"><img src="/images/AI_Building.png" onclick="openModal(this.src)"></div>
                 <div class="carousel-item"><img src="/images/AI_Eyes.png" onclick="openModal(this.src)"></div>
@@ -581,7 +581,7 @@
             
             <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
-	<div class="carousel-counter"><span id="current-slide-carousel-1">1</span> / <span id="total-slides-carousel-1"></span></div>
+            <div class="carousel-counter"><span id="current-slide">1</span> / <span id="total-slides"></span></div>
         </div>
 			<!-- Original
 	    <div class="project-content">
@@ -648,16 +648,14 @@
 		    </div>
 
             		<!-- Mobile Image Carousel -->
-        <div class="carousel-container" id="carousel-2">
+        <div class="carousel-container">
             <div class="carousel">
                 <div class="carousel-item"><img src="/images/asakusa.jpg" onclick="openModal(this.src)"></div>
-		<div class="carousel-item"><img src="/images/asakusa_AI.png" onclick="openModal(this.src)"></div>
+		        <div class="carousel-item"><img src="/images/asakusa_AI.png" onclick="openModal(this.src)"></div>
             </div>
-	<button class="carousel-button prev" onclick="moveSlide(-1, 'carousel-2')">&#10094;</button>
-    <button class="carousel-button next" onclick="moveSlide(1, 'carousel-2')">&#10095;</button>
-    <div class="carousel-counter"><span id="current-slide-carousel-2">1</span> / <span id="total-slides-carousel-2"></span></div>
+
     
-</main>
+    </main>
 
     <script>
                 function toggleMenu() {
@@ -665,23 +663,13 @@
             navLinks.classList.toggle("active");
        					 }
 				// Set total slides dynamically when page loads
-document.addEventListener("DOMContentLoaded", () => {
-    const carouselContainers = document.querySelectorAll(".carousel-container");
-
-    carouselContainers.forEach(carouselContainer => {
-        const carousel = carouselContainer.querySelector(".carousel");
-        const items = carousel.querySelectorAll(".carousel-item");
-        const totalSlidesElement = carouselContainer.querySelector("[id^='total-slides']");
-        const currentSlideElement = carouselContainer.querySelector("[id^='current-slide']");
-        
-        let currentIndex = 0;
-        const totalSlides = items.length;
-
-        // Update slide numbers
-        if (totalSlidesElement) totalSlidesElement.textContent = totalSlides;
-        if (currentSlideElement) currentSlideElement.textContent = currentIndex + 1;
-    });
-});
+		document.addEventListener("DOMContentLoaded", () => {
+		    const totalSlidesElement = document.getElementById("total-slides");
+		    const totalSlides = document.querySelectorAll(".carousel-item").length;
+		    
+		    totalSlidesElement.textContent = totalSlides;
+		    document.getElementById("current-slide").textContent = currentIndex + 1;
+		});
 	    
 			let currentIndex = 0;
 	    		const totalSlides = document.querySelectorAll('.carousel-item').length;
@@ -694,8 +682,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				{ src: '/images/Flower.png', desc: 'AI pretty flowers' },
 				{ src: '/images/camera.png', desc: 'AI aesthetic camera' },
 				{ src: '/images/SeasideTown.png', desc: 'AI seaside town' },
-				{ src: '/images/asakusa.jpg', desc: 'Asakusa' },
-				{ src: '/images/asakusa_AI.png', desc: 'Asakusa AI' },
 			];
 
 
@@ -760,18 +746,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			};
 
 
-				function moveSlide(direction, carouselId) {
-				    const carouselContainer = document.getElementById(carouselId);
-				    const carousel = carouselContainer.querySelector(".carousel");
-				    const totalSlides = carousel.querySelectorAll(".carousel-item").length;
-				    let currentIndex = parseInt(carouselContainer.dataset.index);
-				
-				    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-				    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-				
-				    carouselContainer.dataset.index = currentIndex;
-				    carouselContainer.querySelector("[id^='current-slide']").textContent = currentIndex + 1;
-				}
+			    function moveSlide(direction) {
+		            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+		            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
+		            document.getElementById('current-slide').textContent = currentIndex + 1;
 		        }
 	    
         window.addEventListener('scroll', function() {

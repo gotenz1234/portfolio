@@ -41,13 +41,16 @@
         </div>
     </header>
 <script>
-    // Get the current path (e.g., "/work/index.html")
+    // Get the current path (e.g., "/projects/web.html")
     let currentPath = window.location.pathname;
 
-    // Select all nav links
     document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active'); // Add active class if the href matches current path
+        let linkPath = link.getAttribute('href');
+
+        // Check exact match OR if current path starts with "/projects" for subpages
+        if (currentPath === linkPath || (currentPath.startsWith("/projects/") && linkPath === "/projects/index.html")) {
+            link.classList.add('active'); // Add active class
         }
     });
 </script>
+

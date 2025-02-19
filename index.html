@@ -578,29 +578,49 @@
 
 	    // testing testing testing testing
 
-function highlightActiveNavLink() {
-    console.log("Highlight function triggered.");
+    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+        console.log("Script loaded successfully.");
 
-    var currentPath = window.location.pathname;
-    console.log("Current Path:", currentPath);
+        function highlightActiveNavLink() {
+            var currentPath = window.location.pathname;
+            console.log("Current Path:", currentPath);
+        var currentPath = window.location.pathname;
+        console.log("Current Path:", currentPath);
 
-    var navLinks = document.querySelectorAll(".nav-link");
+            var navLinks = document.querySelectorAll(".nav-link");
+        var navLinks = document.querySelectorAll(".nav-link");
 
-    if (navLinks.length === 0) {
-        console.error("No navigation links found. Make sure your '.nav-link' class is correctly applied.");
-        return;
-    }
-
-    navLinks.forEach(function (link) {
-        var linkPath = link.getAttribute("href");
-
-        console.log("Checking link:", linkPath);
-
-        // If the current path matches OR if it's within "/projects/"
-        if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
-            console.log("Active link found:", linkPath);
-            link.classList.add("active");
+            if (navLinks.length === 0) {
+                console.error("No navigation links found. Make sure your '.nav-link' class is correctly applied.");
+                return;
+            }
+            navLinks.forEach(function (link) {
+                var linkPath = new URL(link.href, window.location.origin).pathname;
+                console.log("Checking link:", link.href, "Path Extracted:", linkPath);
+                if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+                    console.log("Active link found:", linkPath);
+                    link.classList.add("active");
+                }
+            });
+        if (navLinks.length === 0) {
+            console.error("No navigation links found. Make sure your '.nav-link' class is correctly applied.");
+            return;
         }
+
+        highlightActiveNavLink();
+    });
+        navLinks.forEach(function (link) {
+            var linkPath = link.getAttribute("href");
+
+        highlightActiveNavLink(); // Run highlighting function
+            console.log("Checking link:", linkPath);
+            // If the current path matches OR if it's within "/projects/"
+            if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+                console.log("Active link found:", linkPath);
+                link.classList.add("active");
+            }
+        });
     });
 </script>
 

@@ -1,56 +1,76 @@
 <style>
-                .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                padding: 10px 0;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .nav-links a {
-                color: black;
-                margin-left: 0;
-                padding: 8px 15px;
-                font-size: 0.9em;
-            }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .nav-links.active {
+            display: flex;
+        }
+        
+        /* General link styles */
+        .nav-links a {
+            color: black;
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        
+        /* Add gold/yellow highlight to active links */
+        .nav-links a.active {
+            background-color: #F4BB44;
+            color: white; /* Ensure text is readable */
+            font-weight: bold;
+            border-radius: 5px; /* Optional: rounded corners */
+        }
+
 </style>
 <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    Krismon | Storytelling Through Content & Marketing
-                    <div class="hamburger" onclick="toggleMenu()">
-                        <i class="fas fa-bars"></i>
-                    </div>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                Krismon | Storytelling Through Content & Marketing
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <nav>
-                    <div class="nav-links" id="navLinks">
-                        <li><a href="/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-            		    <li><a href="/projects/index.html" class="nav-link"><i class="fas fa-briefcase"></i> Work</a></li>
-            		    <li><a href="/about/index.html" class="nav-link"><i class="fas fa-user"></i> About</a></li>
-                        <a href="/Krismon-Lie-Resume_2025_Final.pdf"><i class="fas fa-file-alt"></i> Resume</a>
-                    </div>
-                </nav>
             </div>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/projects/index.html" class="nav-link"><i class="fas fa-briefcase"></i> Work</a></li>
+                    <li><a href="/about/index.html" class="nav-link"><i class="fas fa-user"></i> About</a></li>
+                    <li><a href="/Krismon-Lie-Resume_2025_Final.pdf"><i class="fas fa-file-alt"></i> Resume</a></li>
+                </ul>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
+
 <script>
-    // Get the current path (e.g., "/projects/web.html")
-    let currentPath = window.location.pathname;
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentPath = window.location.pathname;
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-        let linkPath = link.getAttribute('href');
+        document.querySelectorAll('.nav-link').forEach(link => {
+            let linkPath = link.getAttribute('href');
 
-        // Check exact match OR if current path starts with "/projects" for subpages
-        if (currentPath === linkPath || (currentPath.startsWith("/projects/") && linkPath === "/projects/index.html")) {
-            link.classList.add('active'); // Add active class
-        }
+            // Check for exact match OR highlight "Work" if inside /projects/
+            if (currentPath === linkPath || (currentPath.startsWith("/projects/") && linkPath === "/projects/index.html")) {
+                link.classList.add('active');
+            }
+        });
     });
+
+    // Mobile menu toggle function
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+    }
 </script>
+
 

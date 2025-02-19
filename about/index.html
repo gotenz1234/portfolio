@@ -207,26 +207,8 @@
     </style>
 </head>
 <body>
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    Krismon | Storytelling Through Content & Marketing
-                    <div class="hamburger" onclick="toggleMenu()">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </div>
-                <nav>
-                    <div class="nav-links" id="navLinks">
-                        <a href="/" ><i class="fas fa-home"></i> Home</a>
-			<a href="/projects"><i class="fas fa-briefcase"></i> Work</a>
-                        <a href="/about" class="active"><i class="fas fa-user"></i> About</a>
-                        <a href="/Krismon-Lie-Resume_2025.pdf"><i class="fas fa-file-alt"></i> Resume</a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <div id="header"></div>
+
 
     <main class="container">
         <div class="about-content">
@@ -264,6 +246,17 @@
                 header.style.background = 'linear-gradient(to right, #6200EA, #B388FF)';
             }
         });
+
+	    // Function to load an external file and insert it into an element
+        function loadHTML(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(error => console.error('Error loading file:', error));
+        }
+
+        // Load header and footer dynamically
+        loadHTML("header", "/header.html");
     </script>
 </body>
 </html>

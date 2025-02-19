@@ -577,7 +577,7 @@
 		<div class="carousel-item"><img src="/images/DarkAlley.png" onclick="openModal(this.src)"></div>
                 <div class="carousel-item"><img src="/images/Flower.png" onclick="openModal(this.src)"></div>
                 <div class="carousel-item"><img src="/images/camera.png" onclick="openModal(this.src)"></div>
-		        <div class="carousel-item"><img src="/images/SeasideTown.png" onclick="openModal(this.src)"></div>
+		<div class="carousel-item"><img src="/images/SeasideTown.png" onclick="openModal(this.src)"></div>
             </div>
             
             <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
@@ -690,7 +690,9 @@ const imagesSecond = [
 // DOM Content Loaded - Initialize carousels
 document.addEventListener("DOMContentLoaded", () => {
     // First Carousel
-    totalSlides = document.querySelectorAll(".carousel-item").length;
+    // totalSlides = document.querySelectorAll(".carousel-item").length;
+totalSlides = document.querySelectorAll('.carousel-item:not(#carousel-second .carousel-item)').length;
+
     document.getElementById("total-slides").textContent = totalSlides;
     document.getElementById("current-slide").textContent = currentIndex + 1;
 

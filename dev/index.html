@@ -662,191 +662,148 @@
     </main>
 
     <script>
-                function toggleMenu() {
-            var navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
-       					 }
-				// Set total slides dynamically when page loads
-		document.addEventListener("DOMContentLoaded", () => {
-		    const totalSlidesElement = document.getElementById("total-slides");
-		    const totalSlides = document.querySelectorAll(".carousel-item").length;
-		    
-		    totalSlidesElement.textContent = totalSlides;
-		    document.getElementById("current-slide").textContent = currentIndex + 1;
-		});
+// Global Variables
+let currentIndex = 0;
+let currentIndexSecond = 0;
+let totalSlides = 0;
+let totalSlidesSecond = 0;
 
-	    	let currentIndexSecond = 0;
-		let totalSlidesSecond = 0;
-			    	// Initialize the second carousel after DOM is loaded
-		document.addEventListener('DOMContentLoaded', function() {
-		    totalSlidesSecond = document.querySelectorAll('#carousel-second .carousel-item').length;
-		    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
-		    document.getElementById('total-slides-second').textContent = totalSlidesSecond;
-		});
-	    
-			let currentIndex = 0;
-	    		const totalSlides = document.querySelectorAll('.carousel-item').length;
-			const images = [
-				{ src: '/images/AI_Building.png', desc: 'AI Building' },
-				{ src: '/images/AI_Eyes.png', desc: 'AI Eyes' },
-				{ src: '/images/AI_Garden.png', desc: 'AI Garden' },
-				{ src: '/images/Shore.png', desc: 'AI Shore' },
-				{ src: '/images/DarkAlley.png', desc: 'AI Dark alluring alley' },
-				{ src: '/images/Flower.png', desc: 'AI pretty flowers' },
-				{ src: '/images/camera.png', desc: 'AI aesthetic camera' },
-				{ src: '/images/SeasideTown.png', desc: 'AI seaside town' },
-			];
+// Image data for carousels
+const images = [
+    { src: '/images/AI_Building.png', desc: 'AI Building' },
+    { src: '/images/AI_Eyes.png', desc: 'AI Eyes' },
+    { src: '/images/AI_Garden.png', desc: 'AI Garden' },
+    { src: '/images/Shore.png', desc: 'AI Shore' },
+    { src: '/images/DarkAlley.png', desc: 'AI Dark alluring alley' },
+    { src: '/images/Flower.png', desc: 'AI pretty flowers' },
+    { src: '/images/camera.png', desc: 'AI aesthetic camera' },
+    { src: '/images/SeasideTown.png', desc: 'AI seaside town' },
+];
 
+const imagesSecond = [
+    { src: '/images/asakusa.jpg', desc: 'Asakusa Before' },
+    { src: '/images/asakusa_AI.png', desc: 'Asakusa After' },
+];
 
+// DOM Content Loaded - Initialize carousels
+document.addEventListener("DOMContentLoaded", () => {
+    // First Carousel
+    totalSlides = document.querySelectorAll(".carousel-item").length;
+    document.getElementById("total-slides").textContent = totalSlides;
+    document.getElementById("current-slide").textContent = currentIndex + 1;
 
+    // Second Carousel
+    totalSlidesSecond = document.querySelectorAll('#carousel-second .carousel-item').length;
+    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
+    document.getElementById('total-slides-second').textContent = totalSlidesSecond;
+});
 
-			function openModal(src, desc) {
-				console.log("src value passed", src);
-				const modal = document.getElementById('myModal');
-				const modalImg = document.getElementById('modalImg');
-				/* Removing description for this page */
-				/*  const modalDesc = document.getElementById('modalDesc'); */
+// Menu Toggle
+function toggleMenu() {
+    var navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+}
 
-				console.log("Current Index Number", currentIndex);
-				/* currentIndex = images.findIndex(img => img.src === src); */ 
-				currentIndex = images.findIndex(img => img.src.endsWith(src.split('/').pop()));
+// Modal Functions for First Carousel
+function openModal(src, desc) {
+    console.log("src value passed", src);
+    const modal = document.getElementById('myModal');
+    const modalImg = document.getElementById('modalImg');
 
-				console.log("Opening Modal at index", currentIndex); /* Debug */
-				modal.style.display = 'flex';
-				modalImg.src = src;
+    currentIndex = images.findIndex(img => img.src.endsWith(src.split('/').pop()));
 
-				/* Removing description for this page */
-				/* modalDesc.textContent = desc; */
-			}
+    console.log("Opening Modal at index", currentIndex);
+    modal.style.display = 'flex';
+    modalImg.src = src;
+}
 
-			function closeModal() {
-				const modal = document.getElementById('myModal');
-				modal.style.display = 'none';
-			}
+function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+}
 
-			function prevImage() {
-				if (currentIndex > 0) {
-					currentIndex--;
-				} else {
-					currentIndex = images.length - 1;
-				}
-				updateModal();
-			}
+function prevImage() {
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
+    updateModal();
+}
 
-			function nextImage() {
-				if (currentIndex < images.length - 1) {
-					currentIndex++;
-				} else {
-					currentIndex = 0;
-				}
-				console.log("Updating Modal next image", currentIndex);
-				updateModal();
-			}
+function nextImage() {
+    currentIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+    console.log("Updating Modal next image", currentIndex);
+    updateModal();
+}
 
-			function updateModal() {
-				const modalImg = document.getElementById('modalImg');
-				const modalDesc = document.getElementById('modalDesc');
-				modalImg.src = images[currentIndex].src;
-				modalDesc.textContent = images[currentIndex].desc;
-			}
+function updateModal() {
+    const modalImg = document.getElementById('modalImg');
+    const modalDesc = document.getElementById('modalDesc');
+    modalImg.src = images[currentIndex].src;
+    if (modalDesc) modalDesc.textContent = images[currentIndex].desc;
+}
 
-			// Close modal when clicking outside the image
-			window.onclick = function (event) {
-				const modal = document.getElementById('myModal');
-				if (event.target === modal) {
-					closeModal();
-				}
-			};
+// First Carousel Movement
+function moveSlide(direction) {
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
+    document.getElementById('current-slide').textContent = currentIndex + 1;
+}
 
+// Modal Functions for Second Carousel
+function openModalSecond(src, desc) {
+    console.log("Second carousel: src value passed", src);
+    const modal = document.getElementById('myModalSecond');
+    const modalImg = document.getElementById('modalImgSecond');
 
-			    function moveSlide(direction) {
-		            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-		            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
-		            document.getElementById('current-slide').textContent = currentIndex + 1;
-		        }
+    currentIndexSecond = imagesSecond.findIndex(img => img.src.endsWith(src.split('/').pop()));
+    console.log("Second carousel: Opening Modal at index", currentIndexSecond);
 
+    modal.style.display = 'flex';
+    modalImg.src = src;
 
+    const modalDesc = document.getElementById('modalDescSecond');
+    if (modalDesc) modalDesc.textContent = desc || '';
+}
 
-			// Image data for the second carousel
-			const imagesSecond = [
-			    	{ src: '/images/asakusa.jpg', desc: 'Asakusa Before' },
-				{ src: '/images/asakusa_AI.png', desc: 'Asakusa After' },
-			];
-			
-			// Functions for the second carousel
-			function openModalSecond(src, desc) {
-			    console.log("Second carousel: src value passed", src);
-			    const modal = document.getElementById('myModalSecond');
-			    const modalImg = document.getElementById('modalImgSecond');
-			    
-			    currentIndexSecond = imagesSecond.findIndex(img => img.src.endsWith(src.split('/').pop()));
-			    console.log("Second carousel: Opening Modal at index", currentIndexSecond);
-			    
-			    modal.style.display = 'flex';
-			    modalImg.src = src;
-			    
-			    if (document.getElementById('modalDescSecond')) {
-			        const modalDesc = document.getElementById('modalDescSecond');
-			        modalDesc.textContent = desc || '';
-			    }
-			}
-			
-			function closeModalSecond() {
-			    const modal = document.getElementById('myModalSecond');
-			    modal.style.display = 'none';
-			}
-			
-			function prevImageSecond() {
-			    if (currentIndexSecond > 0) {
-			        currentIndexSecond--;
-			    } else {
-			        currentIndexSecond = imagesSecond.length - 1;
-			    }
-			    updateModalSecond();
-			}
-			
-			function nextImageSecond() {
-			    if (currentIndexSecond < imagesSecond.length - 1) {
-			        currentIndexSecond++;
-			    } else {
-			        currentIndexSecond = 0;
-			    }
-			    console.log("Second carousel: Updating Modal next image", currentIndexSecond);
-			    updateModalSecond();
-			}
-			
-			function updateModalSecond() {
-			    const modalImg = document.getElementById('modalImgSecond');
-			    const modalDesc = document.getElementById('modalDescSecond');
-			    
-			    modalImg.src = imagesSecond[currentIndexSecond].src;
-			    if (modalDesc) {
-			        modalDesc.textContent = imagesSecond[currentIndexSecond].desc;
-			    }
-			}
-			
-			function moveSlideSecond(direction) {
-			    currentIndexSecond = (currentIndexSecond + direction + totalSlidesSecond) % totalSlidesSecond;
-			    document.getElementById('carousel-second').style.transform = `translateX(-${currentIndexSecond * 100}%)`;
-			    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
-			}
-			
-			// Close second modal when clicking outside the image
-			window.addEventListener('click', function(event) {
-			    const modal = document.getElementById('myModalSecond');
-			    if (event.target === modal) {
-			        closeModalSecond();
-			    }
-			});
-	    
-        window.addEventListener('scroll', function() {
-            var header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(98, 0, 234, 0.9)';
-            } else {
-                header.style.background = 'linear-gradient(to right, #6200EA, #B388FF)';
-            }
-        });
+function closeModalSecond() {
+    document.getElementById('myModalSecond').style.display = 'none';
+}
+
+function prevImageSecond() {
+    currentIndexSecond = currentIndexSecond > 0 ? currentIndexSecond - 1 : imagesSecond.length - 1;
+    updateModalSecond();
+}
+
+function nextImageSecond() {
+    currentIndexSecond = currentIndexSecond < imagesSecond.length - 1 ? currentIndexSecond + 1 : 0;
+    console.log("Second carousel: Updating Modal next image", currentIndexSecond);
+    updateModalSecond();
+}
+
+function updateModalSecond() {
+    const modalImg = document.getElementById('modalImgSecond');
+    const modalDesc = document.getElementById('modalDescSecond');
+
+    modalImg.src = imagesSecond[currentIndexSecond].src;
+    if (modalDesc) modalDesc.textContent = imagesSecond[currentIndexSecond].desc;
+}
+
+// Second Carousel Movement
+function moveSlideSecond(direction) {
+    currentIndexSecond = (currentIndexSecond + direction + totalSlidesSecond) % totalSlidesSecond;
+    document.getElementById('carousel-second').style.transform = `translateX(-${currentIndexSecond * 100}%)`;
+    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
+}
+
+// Close Modals When Clicking Outside
+window.onclick = function (event) {
+    if (event.target === document.getElementById('myModal')) closeModal();
+    if (event.target === document.getElementById('myModalSecond')) closeModalSecond();
+};
+
+// Scroll Effect for Header
+window.addEventListener('scroll', function() {
+    var header = document.getElementById('header');
+    header.style.backgroundColor = window.scrollY > 50 ? 'rgba(98, 0, 234, 0.9)' : 'linear-gradient(to right, #6200EA, #B388FF)';
+});
+
     </script>
     <div style="height: 100px;"></div> <!-- To Scroll Past the bottom-->
 </body>

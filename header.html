@@ -1,4 +1,26 @@
-    <header id="header">
+<style>
+                .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                color: black;
+                margin-left: 0;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+</style>
+<header id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -10,8 +32,8 @@
                 <nav>
                     <div class="nav-links" id="navLinks">
                         <li><a href="/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-            		<li><a href="/work/index.html" class="nav-link"><i class="fas fa-briefcase"></i> Work</a></li>
-            		<li><a href="/about/index.html" class="nav-link"><i class="fas fa-user"></i> About</a></li>
+            		    <li><a href="/projects/index.html" class="nav-link"><i class="fas fa-briefcase"></i> Work</a></li>
+            		    <li><a href="/about/index.html" class="nav-link"><i class="fas fa-user"></i> About</a></li>
                         <a href="/Krismon-Lie-Resume_2025_Final.pdf"><i class="fas fa-file-alt"></i> Resume</a>
                     </div>
                 </nav>

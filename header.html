@@ -1,119 +1,115 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krismon</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* Header-specific styles */
-        nav a.active {
-            background-color: #F4BB44; /* Highlight color */
-            color: white; /* Text color when active */
-        }
-        
-        /* Additional responsive styling for mobile menu */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .hamburger {
-                display: block;
-                cursor: pointer;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .hamburger {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    Krismon | Storytelling Through Content & Marketing
-                    <div class="hamburger" onclick="toggleMenu()">
-                        <i class="fas fa-bars"></i>
-                    </div>
+<!-- Standalone Header for Inclusion in Other Pages -->
+<header id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                Krismon | Storytelling Through Content & Marketing
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <nav>
-                    <div class="nav-links" id="navLinks">
-                        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                        <a href="/projects" class="nav-link"><i class="fas fa-briefcase"></i> Work</a>
-                        <a href="/about" class="nav-link"><i class="fas fa-user"></i> About</a>
-                        <a href="/Krismon-Lie-Resume_2025_Final.pdf" class="nav-link"><i class="fas fa-file-alt"></i> Resume</a>
-                    </div>
-                </nav>
             </div>
+            <nav>
+                <div class="nav-links" id="navLinks">
+                    <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="/projects" class="nav-link"><i class="fas fa-briefcase"></i> Work</a>
+                    <a href="/about" class="nav-link"><i class="fas fa-user"></i> About</a>
+                    <a href="/Krismon-Lie-Resume_2025_Final.pdf" class="nav-link"><i class="fas fa-file-alt"></i> Resume</a>
+                </div>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
-    <script>
-        // Immediately execute code
-        (function() {
-            console.log("Header script loaded");
+<style>
+    /* Header-specific styles */
+    nav a.active {
+        background-color: #F4BB44; /* Highlight color */
+        color: white; /* Text color when active */
+    }
+    
+    /* Additional responsive styling for mobile menu */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .hamburger {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Script with global ID to prevent multiple instances -->
+<script id="header-navigation-script">
+    // Only run if not already executed
+    if (!window._headerScriptExecuted) {
+        window._headerScriptExecuted = true;
+        
+        console.log("Header script loaded - running once");
+        
+        // Global function for mobile menu
+        window.toggleMenu = function() {
+            let navLinks = document.getElementById("navLinks");
+            if (navLinks) {
+                navLinks.classList.toggle("active");
+                console.log("Menu toggled");
+            }
+        };
+        
+        // Main function to highlight current navigation
+        function highlightCurrentNavLink() {
+            // Get current path
+            let currentPath = window.location.pathname;
             
-            function highlightCurrentNavLink() {
-                // Get current path
-                let currentPath = window.location.pathname;
+            // Special case: if path ends with index.html, treat as root
+            if (currentPath.endsWith('/index.html')) {
+                currentPath = '/';
+            }
+            
+            console.log("Navigation: Current Path =", currentPath);
+            
+            // Clear any existing active classes first
+            document.querySelectorAll('.nav-link.active').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and highlight the appropriate link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                let linkPath = link.getAttribute('href');
                 
-                // Handle file:// URLs better for local testing
-                if (currentPath.includes(':')) {
-                    currentPath = '/';
+                if (currentPath === linkPath) {
+                    link.classList.add('active');
+                    console.log("Navigation: Exact match found:", linkPath);
+                } else if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
+                    link.classList.add('active');
+                    console.log("Navigation: Subpath match found:", linkPath);
                 }
-                
-                console.log("Current Path:", currentPath);
-                
-                // Clear any existing active classes first
-                document.querySelectorAll('.nav-link.active').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    let linkPath = link.getAttribute('href');
-                    
-                    if (currentPath === linkPath) {
-                        link.classList.add('active');
-                        console.log("Exact match found:", linkPath);
-                    } else if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
-                        link.classList.add('active');
-                        console.log("Subpath match found:", linkPath);
-                    }
-                });
-            }
-            
-            function toggleMenu() {
-                let navLinks = document.getElementById("navLinks");
-                if (navLinks) {
-                    navLinks.classList.toggle("active");
-                    console.log("Menu toggled");
-                }
-            }
-            
-            // Expose toggle function globally
-            window.toggleMenu = toggleMenu;
-            
-            // Initialize navigation
-            if (document.readyState === "complete" || document.readyState === "interactive") {
-                highlightCurrentNavLink();
-            } else {
-                document.addEventListener("DOMContentLoaded", highlightCurrentNavLink);
-            }
-            
-            // Also try after window loads as backup
-            window.addEventListener("load", highlightCurrentNavLink);
-        })();
-    </script>
-</body>
-</html>
+            });
+        }
+        
+        // Run on document ready if possible
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            highlightCurrentNavLink();
+        } else {
+            // Otherwise wait for DOM
+            document.addEventListener("DOMContentLoaded", highlightCurrentNavLink);
+        }
+        
+        // Also run when window fully loads as backup
+        window.addEventListener("load", highlightCurrentNavLink);
+    } else {
+        console.log("Header script already executed - skipping");
+    }
+</script>

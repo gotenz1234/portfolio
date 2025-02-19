@@ -27,22 +27,25 @@ nav a.active {
 </header>
 <body>
     <script>
-            console.log("Script loaded"); // Debugging if script is running
+        console.log("Script loaded"); // Debugging if script is running
+        
         document.addEventListener("DOMContentLoaded", function () {
             let currentPath = window.location.pathname;
             
             // Log current path to see if it matches the expected value
             console.log("Current Path:", currentPath);
-    
+
             // Loop through each nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 let linkPath = link.getAttribute('href');
-    
+
                 // Log the href of each link to check if it's being compared correctly
                 console.log("Checking link:", linkPath);
-    
-                // If the current path matches the link OR if the current path is inside '/projects/'
-                if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+
+                // Check for exact matches or if the current path is inside '/projects/' or '/about'
+                if (currentPath === linkPath || 
+                    (currentPath.startsWith("/projects") && linkPath === "/projects") || 
+                    (currentPath.startsWith("/about") && linkPath === "/about")) {
                     console.log("Active link found:", linkPath); // Log when active link is found
                     link.classList.add('active'); // Add 'active' class to the matching link
                 }

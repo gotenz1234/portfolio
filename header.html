@@ -1,20 +1,49 @@
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    Krismon | Storytelling Through Content & Marketing
-                    <div class="hamburger" onclick="toggleMenu()">
-                        <i class="fas fa-bars"></i>
-                    </div>
+<style>
+nav a.active {
+    background-color: #F4BB44; /* Highlight color */
+    color: white; /* Text color when active */
+}
+</style>
+
+<header id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                Krismon | Storytelling Through Content & Marketing
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <nav>
-                    <div class="nav-links" id="navLinks">
-                        <a href="/" ><i class="fas fa-home"></i> Home</a>
-			<a href="/projects" class="active"><i class="fas fa-briefcase"></i> Work</a>
-                        <a href="/about"><i class="fas fa-user"></i> About</a>
-                        <a href="/Krismon-Lie-Resume_2025_Final.pdf"><i class="fas fa-file-alt"></i> Resume</a>
-                    </div>
-                </nav>
             </div>
+            <nav>
+                <div class="nav-links" id="navLinks">
+                    <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="/projects" class="nav-link"><i class="fas fa-briefcase"></i> Work</a>
+                    <a href="/about" class="nav-link"><i class="fas fa-user"></i> About</a>
+                    <a href="/Krismon-Lie-Resume_2025_Final.pdf" class="nav-link"><i class="fas fa-file-alt"></i> Resume</a>
+                </div>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentPath = window.location.pathname;
+
+        // Loop through each nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            let linkPath = link.getAttribute('href');
+
+            // If the current path matches the link OR if the current path is inside '/projects/'
+            if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+                link.classList.add('active'); // Add 'active' class to the matching link
+            }
+        });
+    });
+
+    // Mobile menu toggle function for the hamburger
+    function toggleMenu() {
+        let navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+    }
+</script>

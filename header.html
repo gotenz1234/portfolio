@@ -9,12 +9,23 @@
                 </div>
                 <nav>
                     <div class="nav-links" id="navLinks">
-                        <a href="/" ><i class="fas fa-home"></i> Home</a>
-			<a href="/projects" class="active"><i class="fas fa-briefcase"></i> Work</a>
-                        <a href="/about"><i class="fas fa-user"></i> About</a>
+                        <li><a href="/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+            		<li><a href="/work/index.html" class="nav-link"><i class="fas fa-briefcase"></i> Work</a></li>
+            		<li><a href="/about/index.html" class="nav-link"><i class="fas fa-user"></i> About</a></li>
                         <a href="/Krismon-Lie-Resume_2025_Final.pdf"><i class="fas fa-file-alt"></i> Resume</a>
                     </div>
                 </nav>
             </div>
         </div>
     </header>
+<script>
+    // Get the current path (e.g., "/work/index.html")
+    let currentPath = window.location.pathname;
+
+    // Select all nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active'); // Add active class if the href matches current path
+        }
+    });
+</script>

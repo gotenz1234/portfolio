@@ -681,6 +681,8 @@ const images = [
 const imagesSecond = [
     { src: '/images/asakusa.jpg', desc: 'Asakusa Before' },
     { src: '/images/asakusa_AI.png', desc: 'Asakusa After' },
+    { src: '/images/Coke_Original.jpg', desc: 'Coke Before' },
+    { src: '/images/Coke_Modified.png', desc: 'Coke After' },
 ];
 
 // DOM Content Loaded - Initialize carousels
@@ -756,8 +758,10 @@ function openModalSecond(src, desc) {
     modal.style.display = 'flex';
     modalImg.src = src;
 
-    const modalDesc = document.getElementById('modalDescSecond');
-    if (modalDesc) modalDesc.textContent = desc || '';
+	// This is for description currently not in use
+	//	const modalDesc = document.getElementById('modalDescSecond');
+    	//	if (modalDesc) modalDesc.textContent = desc || '';
+	//
 }
 
 function closeModalSecond() {

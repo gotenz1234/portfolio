@@ -576,7 +576,27 @@
 
 
 
+	    // testing testing testing testing
 	    
+	        document.addEventListener("DOMContentLoaded", function() {
+        console.log("Script loaded successfully."); // Check if script runs
+
+        var currentPath = window.location.pathname;
+        console.log("Current Path:", currentPath);
+
+        var navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(function(link) {
+            var linkPath = link.getAttribute('href');
+            console.log("Checking link:", linkPath);
+
+            // If current path matches or it's inside "/projects/"
+            if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+                console.log("Active link found:", linkPath);
+                link.classList.add('active');
+            }
+        });
+    });
 
     </script>
 </body>

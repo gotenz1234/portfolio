@@ -584,22 +584,7 @@
             <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
             <div class="carousel-counter"><span id="current-slide">1</span> / <span id="total-slides"></span></div>
         </div>
-			<!-- Original
-	    <div class="project-content">
-		    <h4>The modern sorcery</h4>
-		<div class="project-headers">
-		    <div class="project-details comparison-padding">
-			 <p>
-	                    Originally captured at Sensoji Temple, the photograph has been reimagined through the application of img2img technology, resulting in a strikingly eerie composition. <br>
-	                    The characters within the scene now appear to gaze directly at the viewer, intensifying the sense of immersion and intrigue.
-	                </p>
-		    </div>
-		</div>
-	    </div>
-	      -->
-	    		<!-- Original  -->
 
-	    		<!-- New Testing  -->
 	    
 		<!-- Heading container (full width, same style as top if desired) -->
 		<div class="fullwidth-heading">
@@ -648,13 +633,30 @@
 			    </div>
 		    </div>
 
-            		<!-- Mobile Image Carousel -->
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="carousel-item"><img src="/images/asakusa.jpg" onclick="openModal(this.src)"></div>
-		        <div class="carousel-item"><img src="/images/asakusa_AI.png" onclick="openModal(this.src)"></div>
-            </div>
 
+
+				<!-- HTML for the second carousel (using same styling classes) -->
+		<div class="carousel-container">
+		    <div class="carousel" id="carousel-second">
+		        <div class="carousel-item"><img src="/images/AI_Building.png" onclick="openModalSecond(this.src)"></div>
+		    </div>
+		    <button class="carousel-button prev" id="prev-second" onclick="moveSlideSecond(-1)">&#10094;</button>
+		    <button class="carousel-button next" id="next-second" onclick="moveSlideSecond(1)">&#10095;</button>
+		    <div class="carousel-counter">
+		        <span id="current-slide-second">1</span>/<span id="total-slides-second">1</span>
+		    </div>
+		</div>
+		
+		<!-- Modal for the second carousel -->
+		<div id="myModalSecond" class="modal">
+		    <span class="close" onclick="closeModalSecond()">&times;</span>
+		    <img id="modalImgSecond" class="modal-content">
+		    <div id="modalDescSecond" class="modal-desc"></div>
+		    <div class="modal-nav">
+		        <button onclick="prevImageSecond()">&#10094;</button>
+		        <button onclick="nextImageSecond()">&#10095;</button>
+		    </div>
+		</div>
     
     </main>
 
@@ -670,6 +672,15 @@
 		    
 		    totalSlidesElement.textContent = totalSlides;
 		    document.getElementById("current-slide").textContent = currentIndex + 1;
+		});
+
+	    	let currentIndexSecond = 0;
+		let totalSlidesSecond = 0;
+			    	// Initialize the second carousel after DOM is loaded
+		document.addEventListener('DOMContentLoaded', function() {
+		    totalSlidesSecond = document.querySelectorAll('#carousel-second .carousel-item').length;
+		    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
+		    document.getElementById('total-slides-second').textContent = totalSlidesSecond;
 		});
 	    
 			let currentIndex = 0;
@@ -752,6 +763,80 @@
 		            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}%)`;
 		            document.getElementById('current-slide').textContent = currentIndex + 1;
 		        }
+
+
+
+			// Image data for the second carousel
+			const imagesSecond = [
+			    	{ src: '/images/asakusa.jpg', desc: 'Asakusa Before' },
+				{ src: '/images/asakusa_AI.png', desc: 'Asakusa After' },
+			];
+			
+			// Functions for the second carousel
+			function openModalSecond(src, desc) {
+			    console.log("Second carousel: src value passed", src);
+			    const modal = document.getElementById('myModalSecond');
+			    const modalImg = document.getElementById('modalImgSecond');
+			    
+			    currentIndexSecond = imagesSecond.findIndex(img => img.src.endsWith(src.split('/').pop()));
+			    console.log("Second carousel: Opening Modal at index", currentIndexSecond);
+			    
+			    modal.style.display = 'flex';
+			    modalImg.src = src;
+			    
+			    if (document.getElementById('modalDescSecond')) {
+			        const modalDesc = document.getElementById('modalDescSecond');
+			        modalDesc.textContent = desc || '';
+			    }
+			}
+			
+			function closeModalSecond() {
+			    const modal = document.getElementById('myModalSecond');
+			    modal.style.display = 'none';
+			}
+			
+			function prevImageSecond() {
+			    if (currentIndexSecond > 0) {
+			        currentIndexSecond--;
+			    } else {
+			        currentIndexSecond = imagesSecond.length - 1;
+			    }
+			    updateModalSecond();
+			}
+			
+			function nextImageSecond() {
+			    if (currentIndexSecond < imagesSecond.length - 1) {
+			        currentIndexSecond++;
+			    } else {
+			        currentIndexSecond = 0;
+			    }
+			    console.log("Second carousel: Updating Modal next image", currentIndexSecond);
+			    updateModalSecond();
+			}
+			
+			function updateModalSecond() {
+			    const modalImg = document.getElementById('modalImgSecond');
+			    const modalDesc = document.getElementById('modalDescSecond');
+			    
+			    modalImg.src = imagesSecond[currentIndexSecond].src;
+			    if (modalDesc) {
+			        modalDesc.textContent = imagesSecond[currentIndexSecond].desc;
+			    }
+			}
+			
+			function moveSlideSecond(direction) {
+			    currentIndexSecond = (currentIndexSecond + direction + totalSlidesSecond) % totalSlidesSecond;
+			    document.getElementById('carousel-second').style.transform = `translateX(-${currentIndexSecond * 100}%)`;
+			    document.getElementById('current-slide-second').textContent = currentIndexSecond + 1;
+			}
+			
+			// Close second modal when clicking outside the image
+			window.addEventListener('click', function(event) {
+			    const modal = document.getElementById('myModalSecond');
+			    if (event.target === modal) {
+			        closeModalSecond();
+			    }
+			});
 	    
         window.addEventListener('scroll', function() {
             var header = document.getElementById('header');

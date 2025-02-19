@@ -1,92 +1,119 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<!-- header.html - Complete header with styles and script -->
-<header id="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                Krismon | Storytelling Through Content & Marketing
-                <div class="hamburger" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krismon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Header-specific styles */
+        nav a.active {
+            background-color: #F4BB44; /* Highlight color */
+            color: white; /* Text color when active */
+        }
+        
+        /* Additional responsive styling for mobile menu */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    Krismon | Storytelling Through Content & Marketing
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
+                <nav>
+                    <div class="nav-links" id="navLinks">
+                        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                        <a href="/projects" class="nav-link"><i class="fas fa-briefcase"></i> Work</a>
+                        <a href="/about" class="nav-link"><i class="fas fa-user"></i> About</a>
+                        <a href="/Krismon-Lie-Resume_2025_Final.pdf" class="nav-link"><i class="fas fa-file-alt"></i> Resume</a>
+                    </div>
+                </nav>
             </div>
-            <nav>
-                <div class="nav-links" id="navLinks">
-                    <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                    <a href="/projects" class="nav-link"><i class="fas fa-briefcase"></i> Work</a>
-                    <a href="/about" class="nav-link"><i class="fas fa-user"></i> About</a>
-                    <a href="/Krismon-Lie-Resume_2025_Final.pdf" class="nav-link"><i class="fas fa-file-alt"></i> Resume</a>
-                </div>
-            </nav>
         </div>
-    </div>
-</header>
+    </header>
 
-<style>
-    /* Header-specific styles */
-    nav a.active {
-        background-color: #F4BB44; /* Highlight color */
-        color: white; /* Text color when active */
-    }
-    
-    /* Additional responsive styling for mobile menu */
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none;
-        }
-        
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .hamburger {
-            display: block;
-            cursor: pointer;
-        }
-    }
-    
-    @media (min-width: 769px) {
-        .hamburger {
-            display: none;
-        }
-    }
-</style>
-
-<script>
-    // Run this after the entire document is ready to ensure elements exist
-    document.addEventListener("DOMContentLoaded", function() {
-        console.log("Header script initialized");
-        highlightCurrentNavLink();
-    });
-    
-    function highlightCurrentNavLink() {
-        let currentPath = window.location.pathname;
-        console.log("Current Path:", currentPath);
-        
-        document.querySelectorAll('.nav-link').forEach(link => {
-            let linkPath = link.getAttribute('href');
-            console.log("Checking link:", linkPath);
+    <script>
+        // Immediately execute code
+        (function() {
+            console.log("Header script loaded");
             
-            // Handle exact match first (for homepage)
-            if (currentPath === linkPath) {
-                link.classList.add('active');
-                console.log("Exact match found:", linkPath);
-                return;
+            function highlightCurrentNavLink() {
+                // Get current path
+                let currentPath = window.location.pathname;
+                
+                // Handle file:// URLs better for local testing
+                if (currentPath.includes(':')) {
+                    currentPath = '/';
+                }
+                
+                console.log("Current Path:", currentPath);
+                
+                // Clear any existing active classes first
+                document.querySelectorAll('.nav-link.active').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    let linkPath = link.getAttribute('href');
+                    
+                    if (currentPath === linkPath) {
+                        link.classList.add('active');
+                        console.log("Exact match found:", linkPath);
+                    } else if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
+                        link.classList.add('active');
+                        console.log("Subpath match found:", linkPath);
+                    }
+                });
             }
             
-            // Handle subpaths for sections (but prevent homepage from matching everything)
-            if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
-                link.classList.add('active');
-                console.log("Subpath match found:", linkPath);
+            function toggleMenu() {
+                let navLinks = document.getElementById("navLinks");
+                if (navLinks) {
+                    navLinks.classList.toggle("active");
+                    console.log("Menu toggled");
+                }
             }
-        });
-    }
-    
-    function toggleMenu() {
-        let navLinks = document.getElementById("navLinks");
-        if (navLinks) {
-            navLinks.classList.toggle("active");
-            console.log("Menu toggled");
-        }
-    }
-</script>
+            
+            // Expose toggle function globally
+            window.toggleMenu = toggleMenu;
+            
+            // Initialize navigation
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                highlightCurrentNavLink();
+            } else {
+                document.addEventListener("DOMContentLoaded", highlightCurrentNavLink);
+            }
+            
+            // Also try after window loads as backup
+            window.addEventListener("load", highlightCurrentNavLink);
+        })();
+    </script>
+</body>
+</html>

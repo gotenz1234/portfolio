@@ -1,10 +1,5 @@
-<style>
-nav a.active {
-    background-color: #F4BB44; /* Highlight color */
-    color: white; /* Text color when active */
-}
-</style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- header.html - Complete header with styles and script -->
 <header id="header">
     <div class="container">
         <div class="header-content">
@@ -25,38 +20,73 @@ nav a.active {
         </div>
     </div>
 </header>
-<body>
-    <script>
-        console.log("Script loaded"); // Debugging if script is running
-        
-        document.addEventListener("DOMContentLoaded", function () {
-            let currentPath = window.location.pathname;
-            
-            // Log current path to see if it matches the expected value
-            console.log("Current Path:", currentPath);
 
-            // Loop through each nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                let linkPath = link.getAttribute('href');
-
-                // Log the href of each link to check if it's being compared correctly
-                console.log("Checking link:", linkPath);
-
-                // Check for exact matches or if the current path is inside '/projects/' or '/about'
-                if (currentPath === linkPath || 
-                    (currentPath.startsWith("/projects") && linkPath === "/projects") || 
-                    (currentPath.startsWith("/about") && linkPath === "/about")) {
-                    console.log("Active link found:", linkPath); // Log when active link is found
-                    link.classList.add('active'); // Add 'active' class to the matching link
-                }
-            });
-        });
+<style>
+    /* Header-specific styles */
+    nav a.active {
+        background-color: #F4BB44; /* Highlight color */
+        color: white; /* Text color when active */
+    }
     
-        // Mobile menu toggle function for the hamburger
-        function toggleMenu() {
-            let navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
+    /* Additional responsive styling for mobile menu */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
         }
-    </script>
-</body>
+        
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .hamburger {
+            display: none;
+        }
+    }
+</style>
 
+<script>
+    // Run this after the entire document is ready to ensure elements exist
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Header script initialized");
+        highlightCurrentNavLink();
+    });
+    
+    function highlightCurrentNavLink() {
+        let currentPath = window.location.pathname;
+        console.log("Current Path:", currentPath);
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            let linkPath = link.getAttribute('href');
+            console.log("Checking link:", linkPath);
+            
+            // Handle exact match first (for homepage)
+            if (currentPath === linkPath) {
+                link.classList.add('active');
+                console.log("Exact match found:", linkPath);
+                return;
+            }
+            
+            // Handle subpaths for sections (but prevent homepage from matching everything)
+            if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
+                link.classList.add('active');
+                console.log("Subpath match found:", linkPath);
+            }
+        });
+    }
+    
+    function toggleMenu() {
+        let navLinks = document.getElementById("navLinks");
+        if (navLinks) {
+            navLinks.classList.toggle("active");
+            console.log("Menu toggled");
+        }
+    }
+</script>

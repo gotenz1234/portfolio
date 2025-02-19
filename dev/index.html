@@ -785,7 +785,8 @@ function nextImageSecond() {
 
 function updateModalSecond() {
     const modalImg = document.getElementById('modalImgSecond');
-    const modalDesc = document.getElementById('modalDescSecond');
+    // commenting desc out
+//const modalDesc = document.getElementById('modalDescSecond');
 
     modalImg.src = imagesSecond[currentIndexSecond].src;
     if (modalDesc) modalDesc.textContent = imagesSecond[currentIndexSecond].desc;

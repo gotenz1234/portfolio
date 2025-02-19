@@ -573,6 +573,73 @@
 
         // Load header and footer dynamically
         loadHTML("header", "/header.html");
+
+
+
+	    
+	    // <!-- Script with global ID to prevent multiple instances -->
+	<script id="header-navigation-script">
+    // Only run if not already executed
+    if (!window._headerScriptExecuted) {
+        window._headerScriptExecuted = true;
+        
+        console.log("Header script loaded - running once");
+        
+        // Global function for mobile menu
+        window.toggleMenu = function() {
+            let navLinks = document.getElementById("navLinks");
+            if (navLinks) {
+                navLinks.classList.toggle("active");
+                console.log("Menu toggled");
+            }
+        };
+        
+        // Main function to highlight current navigation
+        function highlightCurrentNavLink() {
+            // Get current path
+            let currentPath = window.location.pathname;
+            
+            // Special case: if path ends with index.html, treat as root
+            if (currentPath.endsWith('/index.html')) {
+                currentPath = '/';
+            }
+            
+            console.log("Navigation: Current Path =", currentPath);
+            
+            // Clear any existing active classes first
+            document.querySelectorAll('.nav-link.active').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and highlight the appropriate link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                let linkPath = link.getAttribute('href');
+                
+                if (currentPath === linkPath) {
+                    link.classList.add('active');
+                    console.log("Navigation: Exact match found:", linkPath);
+                } else if (linkPath !== '/' && currentPath.startsWith(linkPath)) {
+                    link.classList.add('active');
+                    console.log("Navigation: Subpath match found:", linkPath);
+                }
+            });
+        }
+        
+        // Run on document ready if possible
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            highlightCurrentNavLink();
+        } else {
+            // Otherwise wait for DOM
+            document.addEventListener("DOMContentLoaded", highlightCurrentNavLink);
+        }
+        
+        // Also run when window fully loads as backup
+        window.addEventListener("load", highlightCurrentNavLink);
+    } else {
+        console.log("Header script already executed - skipping");
+    }
     </script>
 </body>
 </html>
+
+

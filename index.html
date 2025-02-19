@@ -500,105 +500,106 @@
         </div>
     </main>
 
-    <script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Script loaded successfully."); // Debugging if script runs
+
+        // Toggle mobile menu
         function toggleMenu() {
             var navLinks = document.getElementById("navLinks");
             navLinks.classList.toggle("active");
         }
 
-        window.addEventListener('scroll', function() {
-            var header = document.getElementById('header');
+        // Change header background on scroll
+        window.addEventListener("scroll", function () {
+            var header = document.getElementById("header");
             if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(98, 0, 234, 0.9)';
+                header.style.backgroundColor = "rgba(98, 0, 234, 0.9)";
             } else {
-                header.style.background = 'linear-gradient(to right, #6200EA, #B388FF)';
+                header.style.background = "linear-gradient(to right, #6200EA, #B388FF)";
             }
         });
-		
-		let currentIndex = 0;
-		const totalSlides = document.querySelectorAll('.carousel-item').length; // Define totalSlides globally
 
-		function moveSlide(direction) {
-			const carouselInner = document.querySelector('.carousel-inner');
-			const totalItems = document.querySelectorAll('.carousel-item').length;
-			currentIndex = (currentIndex + direction + totalItems) % totalItems;
-			const offset = -currentIndex * 100;
-			carouselInner.style.transform = `translateX(${offset}%)`;
-			updateCarouselCounter();
-		}
-		
-		function updateCarouselCounter() {
-		const currentSlideElement = document.getElementById('current-slide');
-		const totalSlidesElement = document.getElementById('total-slides');
-		currentSlideElement.textContent = currentIndex + 1;
-		totalSlidesElement.textContent = totalSlides;
-		}
-		
-		// Open the modal and set the image source
+        // Carousel functionality
+        let currentIndex = 0;
+        const totalSlides = document.querySelectorAll(".carousel-item").length; // Define totalSlides globally
+
+        function moveSlide(direction) {
+            const carouselInner = document.querySelector(".carousel-inner");
+            const totalItems = document.querySelectorAll(".carousel-item").length;
+            currentIndex = (currentIndex + direction + totalItems) % totalItems;
+            const offset = -currentIndex * 100;
+            carouselInner.style.transform = `translateX(${offset}%)`;
+            updateCarouselCounter();
+        }
+
+        function updateCarouselCounter() {
+            const currentSlideElement = document.getElementById("current-slide");
+            const totalSlidesElement = document.getElementById("total-slides");
+            currentSlideElement.textContent = currentIndex + 1;
+            totalSlidesElement.textContent = totalSlides;
+        }
+
+        // Initialize the carousel counter
+        updateCarouselCounter();
+
+        // Modal functionality for image preview
         function openModal(imageSrc) {
-	    console.log("openModal function triggered with image source:", imageSrc);
-            const modal = document.getElementById('lightbox-modal');
-            const modalImg = document.getElementById('modal-img');
-            modal.style.display = 'flex'; // Show the modal
+            console.log("openModal function triggered with image source:", imageSrc);
+            const modal = document.getElementById("lightbox-modal");
+            const modalImg = document.getElementById("modal-img");
+            modal.style.display = "flex"; // Show the modal
             modalImg.src = imageSrc; // Set the image source
-	    console.log("Modal image source set to:", modalImg.src); // Check if the source updates
+            console.log("Modal image source set to:", modalImg.src);
         }
 
-        // Close the modal
         function closeModal() {
-            const modal = document.getElementById('lightbox-modal');
-            modal.style.display = 'none'; // Hide the modal
+            const modal = document.getElementById("lightbox-modal");
+            modal.style.display = "none"; // Hide the modal
         }
 
-        // Close the modal if the user clicks outside the image
         window.onclick = function (event) {
-            const modal = document.getElementById('lightbox-modal');
+            const modal = document.getElementById("lightbox-modal");
             if (event.target === modal) {
                 closeModal();
             }
         };
 
-		// Initialize the counter on page load
-		document.addEventListener('DOMContentLoaded', () => {
-			updateCarouselCounter();
-		});
-
-	            // Function to load an external file and insert it into an element
+        // Dynamic header & footer loading
         function loadHTML(id, file) {
             fetch(file)
-                .then(response => response.text())
-                .then(data => document.getElementById(id).innerHTML = data)
-                .catch(error => console.error('Error loading file:', error));
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById(id).innerHTML = data;
+                    
+                    // Run the script inside the loaded content (for highlighting active link)
+                    highlightActiveNavLink();
+                })
+                .catch((error) => console.error("Error loading file:", error));
         }
 
-        // Load header and footer dynamically
         loadHTML("header", "/header.html");
 
+        // Function to highlight active navigation link
+        function highlightActiveNavLink() {
+            console.log("Highlighting active nav link...");
+            
+            var currentPath = window.location.pathname;
+            console.log("Current Path:", currentPath);
 
+            document.querySelectorAll(".nav-link").forEach(function (link) {
+                var linkPath = new URL(link.href, window.location.origin).pathname;
+                console.log("Checking link:", linkPath);
 
-	    // testing testing testing testing
-	    
-	        document.addEventListener("DOMContentLoaded", function() {
-        console.log("Script loaded successfully."); // Check if script runs
-
-        var currentPath = window.location.pathname;
-        console.log("Current Path:", currentPath);
-
-        var navLinks = document.querySelectorAll('.nav-link');
-
-        navLinks.forEach(function(link) {
-            var linkPath = link.getAttribute('href');
-            console.log("Checking link:", linkPath);
-
-            // If current path matches or it's inside "/projects/"
-            if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
-                console.log("Active link found:", linkPath);
-                link.classList.add('active');
-            }
-        });
+                if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+                    console.log("Active link found:", linkPath);
+                    link.classList.add("active");
+                }
+            });
+        }
     });
+</script>
 
-    </script>
 </body>
 </html>
 

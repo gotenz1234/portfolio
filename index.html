@@ -585,9 +585,16 @@
             var currentPath = window.location.pathname;
             console.log("Current Path:", currentPath);
 
-            document.querySelectorAll(".nav-link").forEach(function (link) {
+            var navLinks = document.querySelectorAll(".nav-link");
+
+            if (navLinks.length === 0) {
+                console.error("No navigation links found. Make sure your '.nav-link' class is correctly applied.");
+                return;
+            }
+
+            navLinks.forEach(function (link) {
                 var linkPath = new URL(link.href, window.location.origin).pathname;
-                console.log("Checking link:", linkPath);
+                console.log("Checking link:", link.href, "Path Extracted:", linkPath);
 
                 if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
                     console.log("Active link found:", linkPath);
@@ -595,6 +602,9 @@
                 }
             });
         }
+
+        highlightActiveNavLink();
+    });
 
         highlightActiveNavLink(); // Run highlighting function
     });

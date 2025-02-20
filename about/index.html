@@ -251,7 +251,8 @@
 	function highlightActiveNavLink() {
 	    console.log("Script loaded successfully.");
 	
-	    var currentPath = window.location.pathname;
+	    var currentPath = window.location.pathname.replace(/\/$/, ""); // Remove trailing slash
+
 	    console.log("Current Path:", currentPath);
 	
 	    var navLinks = document.querySelectorAll(".nav-link");

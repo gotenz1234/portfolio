@@ -558,6 +558,37 @@
             }
         };
 
+	// highlight active nav link function <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+	// Function to highlight the active navigation link
+function highlightActiveNavLink() {
+    console.log("Script loaded successfully.");
+
+    var currentPath = window.location.pathname;
+    console.log("Current Path:", currentPath);
+
+    var navLinks = document.querySelectorAll(".nav-link");
+
+    if (navLinks.length === 0) {
+        console.error("No navigation links found. Make sure your '.nav-link' class is correctly applied.");
+        return;
+    }
+
+    navLinks.forEach(function (link) {
+        var linkPath = link.getAttribute("href");
+
+        console.log("Checking link:", linkPath);
+
+        // If the current path matches OR if it's within "/projects/"
+        if (currentPath === linkPath || (currentPath.startsWith("/projects") && linkPath === "/projects")) {
+            console.log("Active link found:", linkPath);
+            link.classList.add("active");
+        }
+    });
+}
+
+	//end of highlight active nav link
+
 		// Initialize the counter on page load
 		document.addEventListener('DOMContentLoaded', () => {
 			updateCarouselCounter();
@@ -567,7 +598,10 @@
 	function loadHTML(id, file) {
 	    fetch(file)
 	        .then(response => response.text())
-	        .then(data => document.getElementById(id).innerHTML = data)
+	        .then(data => {
+	            document.getElementById(id).innerHTML = data;
+	            highlightActiveNavLink(); // Call function AFTER header is loaded
+	        })
 	        .catch(error => console.error('Error loading file:', error));
 	}
 

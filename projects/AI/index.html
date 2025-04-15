@@ -640,6 +640,8 @@
 	    				<!-- HTML for the second carousel (using same styling classes) -->
 		<div class="carousel-container">
 		    <div class="carousel" id="carousel-second">
+			<div class="carousel-item"><img src="/images/AI_Bicycle.png" onclick="openModalSecond(this.src)"></div>
+			<div class="carousel-item"><img src="/images/AI_BicycleSwapped.png" onclick="openModalSecond(this.src)"></div> 
 		        <div class="carousel-item"><img src="/images/asakusa.jpg" onclick="openModalSecond(this.src)"></div>
 			<div class="carousel-item"><img src="/images/asakusa_AI.png" onclick="openModalSecond(this.src)"></div>
 		    	<div class="carousel-item"><img src="/images/Coke_Original.png" onclick="openModalSecond(this.src)"></div>
@@ -685,6 +687,9 @@ const images = [
 ];
 
 const imagesSecond = [
+	
+    { src: '/images/AI_Bicycle.png', desc: 'AI Bicycle Before' },
+{ src: '/images/AI_BicycleSwapped.png', desc: 'AI Bicycle After' },
     { src: '/images/asakusa.jpg', desc: 'Asakusa Before' },
     { src: '/images/asakusa_AI.png', desc: 'Asakusa After' },
     { src: '/images/Coke_Original.png', desc: 'Coke Before' },

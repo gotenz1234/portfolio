@@ -13,8 +13,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krismon - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {
             --primary-color: #6200EA;
@@ -370,54 +375,54 @@
         <div class="gallery">
             <div class="gallery-item">
 			<div onclick="openModal('/images/Mom.JPG')">
-                    <img src="/images/Mom.JPG" alt="A picture of a Mom looking at a flower with her son">
+                    <img src="/images/optimized/Mom.webp" alt="A picture of a Mom looking at a flower with her son" width="1200" height="800" decoding="async" fetchpriority="high">
 			</div>
             </div>
 			
             <div class="gallery-item">
 			<div onclick="openModal('/images/Vendor.JPG')">
-                    <img src="/images/Vendor.JPG" alt="A vendor taking a short break from cooking">
+                    <img src="/images/optimized/Vendor.webp" alt="A vendor taking a short break from cooking" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
             <div class="gallery-item">
 				<div onclick="openModal('/images/KS.JPG')">
-					<img src="/images/KS.JPG" alt="A picture of a man sitting on the floor">
+					<img src="/images/optimized/KS.webp" alt="A picture of a man sitting on the floor" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="gallery-item">
 				<div onclick="openModal('/images/Flower.JPG')">
-					<img src="/images/Flower.JPG" alt="Pretty flower">
+					<img src="/images/optimized/Flower.webp" alt="Pretty flower" width="800" height="1200" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="gallery-item">
 				<div onclick="openModal('/images/Dine.jpg')">
-					<img src="/images/Dine.jpg" alt="A dazzling lady">
+					<img src="/images/optimized/Dine.webp" alt="A dazzling lady" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="gallery-item">
 				<div onclick="openModal('/images/Markie.jpg')">
-					<img src="/images/Markie.jpg" alt="Handsome lad in black and white smiling">
+					<img src="/images/optimized/Markie.webp" alt="Handsome lad in black and white smiling" width="1200" height="796" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
 			<div class="gallery-item">
 				<div onclick="openModal('/images/AI_Eyes.png')">
-					<img src="/images/AI_Eyes.png" alt="An AI generated picture of an eye">
+					<img src="/images/optimized/AI_Eyes.webp" alt="An AI generated picture of an eye" width="821" height="1200" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
 			<div class="gallery-item">
 				<div onclick="openModal('/images/AI_Building.png')">
-					<img src="/images/AI_Building.png" alt="An AI generated image of an building">
+					<img src="/images/optimized/AI_Building.webp" alt="An AI generated image of an building" width="821" height="1200" loading="lazy" decoding="async">
 				</div>
             </div>
 	</div>
@@ -430,55 +435,55 @@
             <div class="carousel-inner">
                          <div class="carousel-item">
 			<div onclick="openModal('/images/Mom.JPG')">
-                    <img src="/images/Mom.JPG" alt="A picture of a Mom looking at a flower with her son">
+                    <img src="/images/optimized/Mom.webp" alt="A picture of a Mom looking at a flower with her son" width="1200" height="800" loading="lazy" decoding="async">
 			</div>
             </div>
 			
             <div class="carousel-item">
 			<div onclick="openModal('/images/Vendor.JPG')">
-                    <img src="/images/Vendor.JPG" alt="A vendor taking a short break from cooking">
+                    <img src="/images/optimized/Vendor.webp" alt="A vendor taking a short break from cooking" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="carousel-item">
 				<div onclick="openModal('/images/KS.JPG')">
-					<img src="/images/KS.JPG" alt="A picture of a man sitting on the floor">
+					<img src="/images/optimized/KS.webp" alt="A picture of a man sitting on the floor" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="carousel-item">
 				<div onclick="openModal('/images/Flower.JPG')">
-					<img src="/images/Flower.JPG" alt="Pretty flower">
+					<img src="/images/optimized/Flower.webp" alt="Pretty flower" width="800" height="1200" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="carousel-item">
 				<div onclick="openModal('/images/Dine.jpg')">
-					<img src="/images/Dine.jpg" alt="A dazzling lady">
+					<img src="/images/optimized/Dine.webp" alt="A dazzling lady" width="1200" height="800" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
             <div class="carousel-item">
 				<div onclick="openModal('/images/Markie.jpg')">
-					<img src="/images/Markie.jpg" alt="Handsome lad in black and white smiling">
+					<img src="/images/optimized/Markie.webp" alt="Handsome lad in black and white smiling" width="1200" height="796" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
 			<div class="carousel-item">
 				<div onclick="openModal('/images/AI_Eyes.png')">
-					<img src="/images/AI_Eyes.png" alt="An AI generated picture of an eye">
+					<img src="/images/optimized/AI_Eyes.webp" alt="An AI generated picture of an eye" width="821" height="1200" loading="lazy" decoding="async">
 				</div>
             </div>
 			
 			
 			<div class="carousel-item">
 				<div onclick="openModal('/images/AI_Building.png')">
-					<img src="/images/AI_Building.png" alt="An AI generated image of an building">
+					<img src="/images/optimized/AI_Building.webp" alt="An AI generated image of an building" width="821" height="1200" loading="lazy" decoding="async">
 				</div>
 
             </div>

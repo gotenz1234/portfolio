@@ -271,6 +271,53 @@
     color: #ccc;
 	}
 
+	.lightbox-nav-button {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 48px;
+		height: 48px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.55);
+		color: white;
+		font-size: 32px;
+		line-height: 1;
+		cursor: pointer;
+		z-index: 1;
+	}
+
+	.lightbox-nav-button:hover,
+	.lightbox-nav-button:focus-visible {
+		background: rgba(255, 255, 255, 0.25);
+		outline: 2px solid white;
+		outline-offset: 2px;
+	}
+
+	.lightbox-prev {
+		left: 20px;
+	}
+
+	.lightbox-next {
+		right: 20px;
+	}
+
+	@media (max-width: 768px) {
+		.lightbox-nav-button {
+			width: 42px;
+			height: 42px;
+			font-size: 28px;
+		}
+
+		.lightbox-prev {
+			left: 10px;
+		}
+
+		.lightbox-next {
+			right: 10px;
+		}
+	}
+
 	/* Carousel Styles */
 	.carousel-container {
 		display: none; /* Hide by default */
@@ -510,9 +557,11 @@
         </div>
 		
 		 <!-- Lightbox Modal -->
-		        <div id="lightbox-modal" class="modal">
+		<div id="lightbox-modal" class="modal">
             <span class="close-btn" onclick="closeModal()">&times;</span>
+            <button type="button" class="lightbox-nav-button lightbox-prev" onclick="changeModalImage(-1)" aria-label="Previous image">&#10094;</button>
             <img class="modal-img" id="modal-img" src="" alt="Full-size image">
+            <button type="button" class="lightbox-nav-button lightbox-next" onclick="changeModalImage(1)" aria-label="Next image">&#10095;</button>
         </div>
     </main>
 
@@ -550,14 +599,35 @@
 		totalSlidesElement.textContent = totalSlides;
 		}
 
+		const modalImages = [
+			'/images/Mom.JPG',
+			'/images/Vendor.JPG',
+			'/images/KS.JPG',
+			'/images/Flower.JPG',
+			'/images/Dine.jpg',
+			'/images/Markie.jpg',
+			'/images/AI_Eyes.png',
+			'/images/AI_Building.png'
+		];
+		let modalIndex = 0;
+
+		function updateModalImage() {
+			const modalImg = document.getElementById('modal-img');
+			modalImg.src = modalImages[modalIndex];
+		}
+
+		function changeModalImage(direction) {
+			modalIndex = (modalIndex + direction + modalImages.length) % modalImages.length;
+			updateModalImage();
+		}
+
 		// Open the modal and set the image source
         function openModal(imageSrc) {
-	    console.log("openModal function triggered with image source:", imageSrc);
             const modal = document.getElementById('lightbox-modal');
-            const modalImg = document.getElementById('modal-img');
+			const requestedImageIndex = modalImages.indexOf(imageSrc);
+			modalIndex = requestedImageIndex === -1 ? 0 : requestedImageIndex;
             modal.style.display = 'flex'; // Show the modal
-            modalImg.src = imageSrc; // Set the image source
-	    console.log("Modal image source set to:", modalImg.src); // Check if the source updates
+			updateModalImage();
         }
 
         // Close the modal
@@ -573,6 +643,21 @@
                 closeModal();
             }
         };
+
+		document.addEventListener('keydown', function (event) {
+			const modal = document.getElementById('lightbox-modal');
+			if (modal.style.display !== 'flex') return;
+
+			if (event.key === 'Escape') {
+				closeModal();
+			} else if (event.key === 'ArrowLeft') {
+				event.preventDefault();
+				changeModalImage(-1);
+			} else if (event.key === 'ArrowRight') {
+				event.preventDefault();
+				changeModalImage(1);
+			}
+		});
 
 	// highlight active nav link function <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

@@ -344,6 +344,9 @@
 			cursor: pointer;
 			padding: 10px;
 			user-select: none;
+			background: transparent;
+			border: 0;
+			line-height: 1;
 		}
 
 		.nav-button:hover {
@@ -439,8 +442,8 @@
 			<span class="close" onclick="closeModal()">&times;</span>
 			<img class="modal-content" id="modalImg">
 			<div class="modal-description" id="modalDesc"></div>
-			<a class="nav-button prev" onclick="prevImage()">&#10094;</a>
-			<a class="nav-button next" onclick="nextImage()">&#10095;</a>
+			<button type="button" class="nav-button prev" onclick="prevImage()" aria-label="Previous image">&#10094;</button>
+			<button type="button" class="nav-button next" onclick="nextImage()" aria-label="Next image">&#10095;</button>
 		</div>
 
 
@@ -534,6 +537,21 @@
 				modalImg.src = images[currentIndex].src;
 				modalDesc.textContent = images[currentIndex].desc;
 			}
+
+			document.addEventListener('keydown', function (event) {
+				const modal = document.getElementById('myModal');
+				if (modal.style.display !== 'flex') return;
+
+				if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					prevImage();
+				} else if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					nextImage();
+				} else if (event.key === 'Escape') {
+					closeModal();
+				}
+			});
 
 			// Close modal when clicking outside the image
 			window.onclick = function (event) {
